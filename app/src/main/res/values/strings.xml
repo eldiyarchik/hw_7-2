@@ -19,5 +19,6 @@
     <string name="addiiton">+</string>
     <string name="dot">.</string>
     <string name="equal">=</string>
+    <string name="result">RESULT</string>
 
 </resources>

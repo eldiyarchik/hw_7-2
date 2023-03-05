@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Integer firstValue, secondValue;
     private String operation;
     private boolean gh = false;
+    private Button btnResult;
 
 
     @Override
@@ -22,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvResult = findViewById(R.id.tv_result);
+
+        btnResult = findViewById(R.id.btnResult);
+
     }
 
     public void onNumberClick(View view) {
         if (gh) {
             tvResult.setText("0");
             gh = false;
+            btnResult.setVisibility(View.GONE);
         }
         switch (view.getId()) {
             case R.id.btn_zero:
@@ -130,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btn_equal:
+                btnResult.setVisibility(View.VISIBLE);
                 gh = true;
                 secondValue = Integer.parseInt(tvResult.getText().toString()
                         .replace(firstValue + operation, ""));
@@ -151,5 +157,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+    }
+
+    public void onPut2Activity(View view) {
+        Intent intent = new Intent(this, MainActivity2.class);
+        String text = tvResult.getText().toString();
+        intent.putExtra("key1", text);
+        startActivity(intent);
     }
 }
